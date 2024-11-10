@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าหลัก - ระบบลงทะเบียนและเข้าสู่ระบบ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('1.jpg'); /* ใส่ URL รูปภาพที่ต้องการ */
+            background-size: cover; /* ให้รูปภาพขยายเต็มหน้าจอ */
+            background-position: center center; /* จัดตำแหน่งรูปภาพให้อยู่กลาง */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* พื้นหลังขาวโปร่งแสง */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .form-switch a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .form-switch a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ยินดีต้อนรับ</h2>
+
+        <!-- ปุ่มให้เลือกลงทะเบียนหรือเข้าสู่ระบบ -->
+        <div class="form-switch">
+            <button onclick="showRegisterForm()">ลงทะเบียน</button>
+            <button onclick="showLoginForm()">เข้าสู่ระบบ</button>
+        </div>
+
+        <!-- ฟอร์มลงทะเบียน -->
+        <div id="registerForm" style="display:none;">
+            <h3>ลงทะเบียน</h3>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="registerUsername">ชื่อผู้ใช้</label>
+                    <input type="text" id="registerUsername" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">อีเมล</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">รหัสผ่าน</label>
+                    <input type="password" id="registerPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">ลงทะเบียน</button>
+                </div>
+            </form>
+        </div>
+
+       <!-- ฟอร์มเข้าสู่ระบบ -->
+    <div id="loginForm" class="container" style="display:none;">
+        <h3>เข้าสู่ระบบ</h3>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="loginUsername">ชื่อผู้ใช้</label>
+                <input type="text" id="loginUsername" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">รหัสผ่าน</label>
+                <input type="password" id="loginPassword" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" onclick="showMenu()">เข้าสู่ระบบ</button>
+            </div>
+        </form>
+        <div class="form-switch">
+            <a href="javascript:void(0);" onclick="showForgotPasswordForm()">ลืมรหัสผ่าน?</a>
+        </div>
+    </div>
+
+    <!-- ฟอร์มลืมรหัสผ่าน -->
+    <div id="forgotPasswordForm" class="container" style="display:none;">
+        <h3>ลืมรหัสผ่าน</h3>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="forgotEmail">กรุณากรอกอีเมลของคุณ</label>
+                <input type="email" id="forgotEmail" name="email" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">ส่งคำขอรีเซ็ตรหัสผ่าน</button>
+            </div>
+        </form>
+        <div class="form-switch">
+            <a href="javascript:void(0);" onclick="showLoginForm()">กลับไปที่หน้าล็อกอิน</a>
+        </div>
+    </div>
+
+       
+    <!-- หน้าฟังก์ชันหลังเข้าสู่ระบบ -->
+    <div id="userMenu" class="container" style="display:none;">
+        <h2>เมนูฟังก์ชัน</h2>
+        <div class="menu-item" onclick="alert('สถานการณ์ปัจจุบัน')">1. สถานการณ์ปัจจุบัน</div>
+        <div class="menu-item" onclick="alert('คำเตือนภัยในพื้นที่ของฉัน')">2. คำเตือนภัยในพื้นที่ของฉัน</div>
+        <div class="menu-item" onclick="alert('จุดอพยพใกล้ฉัน')">3. จุดอพยพใกล้ฉัน</div>
+        <div class="menu-item" onclick="alert('อบรมการหนีภัย')">4. อบรมการหนีภัย</div>
+        <div class="menu-item" onclick="alert('ลงทะเบียนเป็นอาสา + บริจาค')">5. ลงทะเบียนเป็นอาสา + บริจาค</div>
+    </div>
+
+    <script>
+        // ฟังก์ชันแสดงฟอร์มลงทะเบียน
+        function showRegisterForm() {
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('initialPage').style.display = 'none';
+        }
+
+        // ฟังก์ชันแสดงฟอร์มเข้าสู่ระบบ
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('initialPage').style.display = 'none';
+        }
+
+        // ฟังก์ชันแสดงเมนูฟังก์ชันหลังเข้าสู่ระบบ
+        function showMenu() {
+            document.getElementById('userMenu').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
